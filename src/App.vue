@@ -1,6 +1,7 @@
 <script setup>
 // import { RouterLink, RouterView } from 'vue-router'
 import WeatherMockup from './components/handson/WeatherMockup.vue'
+import PropsEmitsParent from './components/practices/component/PropsEmitsParent.vue'
 </script>
 
 <template>
@@ -9,6 +10,7 @@ import WeatherMockup from './components/handson/WeatherMockup.vue'
 
     <div class="wrapper">
       <WeatherMockup />
+      <PropsEmitsParent />
       <!-- <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
