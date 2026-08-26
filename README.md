@@ -1,44 +1,41 @@
-# skala-vue
+# Frontend-framework: Vue.js
 
-This template should help get you started developing with Vue 3 in Vite.
+- **과목명**: Full-Stack Engineering - Frontend-framework: Vue.js
+- **작성자**: 박영신
+- **최종 제출일자**:
 
-## Recommended IDE Setup
+## 변경 이력
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+| 버전 | 작성자 | 작성일자   | 변경 내용                                      |
+| ---- | ------ | ---------- | ---------------------------------------------- |
+| v0.1 | 박영신 | 2026-08-26 | README 틀 최초 작성 (CH02~CH10 챕터 구조 생성) |
 
-## Recommended Browser Setup
+## 목차
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+- [CH02 Getting Started with Vue.js](#ch02-getting-started-with-vuejs)
+- [CH03 Vue Syntax](#ch03-vue-syntax)
+- [CH04 Composition API](#ch04-composition-api)
+- [CH05 Vue Components](#ch05-vue-components)
+- [CH06 Vue Router](#ch06-vue-router)
+- [CH07 Pinia](#ch07-pinia)
+- [CH08 Axios](#ch08-axios)
+- [CH09 UI Libraries](#ch09-ui-libraries)
+- [CH10 Vite Build & Deployment](#ch10-vite-build--deployment)
 
-## Customize configuration
+## CH02 Getting Started with Vue.js
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+## CH03 Vue Syntax
 
-## Project Setup
+## CH04 Composition API
 
-```sh
-npm install
-```
+## CH05 Vue Components
 
-### Compile and Hot-Reload for Development
+## CH06 Vue Router
 
-```sh
-npm run dev
-```
+## CH07 Pinia
 
-### Compile and Minify for Production
+## CH08 Axios
 
-```sh
-npm run build
-```
+## CH09 UI Libraries
 
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+## CH10 Vite Build & Deployment
