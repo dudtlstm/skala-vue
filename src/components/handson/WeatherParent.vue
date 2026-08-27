@@ -6,6 +6,7 @@ import BaseDashboardCard from './BaseDashboardCard.vue'
 import SearchBar from './SearchBar.vue'
 import WeatherCard from './WeatherCard.vue'
 import WeatherSummary from './WeatherSummary.vue'
+import { subjectParticle } from '@/utils/koreanParticle'
 
 // 지역별 날씨 데이터: 기본 3가지 + 개인 추가 2가지(의정부, 포항)
 const cityWeathers = ref([
@@ -55,13 +56,13 @@ const handleUpdateQuery = (value) => {
 
 // WeatherCard의 select-card 이벤트 수신: 상태바 문구 + 선택 도시 상세 정보 갱신
 const handleSelectCard = (city) => {
-  noticeMessage.value = `${city.name}이 선택되었습니다.`
+  noticeMessage.value = `${city.name}${subjectParticle(city.name)} 선택되었습니다.`
   lastSelectedCity.name = city.name
   lastSelectedCity.temp = city.temp
   lastSelectedCity.status = city.status
 }
 
-// WeatherCard의 click-detail 이벤트: 알림창 표시
+// WeatherCard의 click-detail 이벤트 수신: CH03 과제 요구사항 4번을 그대로 따름(window.alert)
 const showDetail = (cityName, status) => {
   window.alert(`${cityName}의 현재 날씨는 [${status}] 상태입니다.`)
 }
@@ -93,56 +94,49 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div class="dashboard-wrapper">
-    <BaseDashboardCard>
-      <SearchBar :current-query="keyword" @update-query="handleUpdateQuery" />
-    </BaseDashboardCard>
+  <div class="app-container">
+    <h1>🧩 CH05: Weather Component</h1>
+    <hr />
 
-    <BaseDashboardCard>
-      <h3>지역별 날씨 현황</h3>
+    <div class="dashboard-wrapper">
+      <BaseDashboardCard>
+        <SearchBar :current-query="keyword" @update-query="handleUpdateQuery" />
+      </BaseDashboardCard>
 
-      <WeatherSummary
-        v-if="visibleWeathers.length > 0"
-        :total-count="visibleWeathers.length"
-        :average-temp="averageTemp"
-        :hot-count="hotCityCount"
-      />
+      <BaseDashboardCard>
+        <h3>지역별 날씨 현황</h3>
 
-      <WeatherCard
-        v-for="city in visibleWeathers"
-        :key="city.id"
-        :city-item="city"
-        @select-card="handleSelectCard"
-        @click-detail="showDetail"
-      />
+        <WeatherSummary
+          v-if="visibleWeathers.length > 0"
+          :total-count="visibleWeathers.length"
+          :average-temp="averageTemp"
+          :hot-count="hotCityCount"
+        />
 
-      <p v-if="visibleWeathers.length === 0" class="empty-line">
-        검색 결과와 일치하는 도시가 없습니다.
-      </p>
-    </BaseDashboardCard>
+        <WeatherCard
+          v-for="city in visibleWeathers"
+          :key="city.id"
+          :city-item="city"
+          @select-card="handleSelectCard"
+          @click-detail="showDetail"
+        />
 
-    <div class="status-bar">
-      {{ noticeMessage }}
+        <p v-if="visibleWeathers.length === 0" class="empty-line">
+          검색 결과와 일치하는 도시가 없습니다.
+        </p>
+      </BaseDashboardCard>
+
+      <div class="status-bar">
+        {{ noticeMessage }}
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.dashboard-wrapper {
-  width: 600px;
-  margin: 0 auto;
-}
 .empty-line {
   text-align: center;
   color: #e74c3c;
   padding: 10px 0;
-}
-.status-bar {
-  background: #e8f5e9;
-  padding: 10px;
-  text-align: center;
-  color: #2e7d32;
-  font-weight: bold;
-  border-radius: 6px;
 }
 </style>
