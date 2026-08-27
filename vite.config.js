@@ -12,6 +12,16 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
   },
+  server: {
+    proxy: {
+      // 서울 열린데이터광장(HTTP 전용) 프록시 — 배포 환경의 Vercel rewrites와 동일한 경로
+      '/seoul-api': {
+        target: 'http://openapi.seoul.go.kr:8088',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/seoul-api/, ''),
+      },
+    },
+  },
   build: {
     // Vite v8 기본 압축기(oxc)는 esbuild.drop 옵션을 그대로 이어받지 않아서
     // console/debugger 제거가 실제로 안 먹힘 → terser로 바꿔서 압축 시점에 확실히 제거한다.
