@@ -84,9 +84,6 @@ watchEffect(() => {
 </script>
 
 <template>
-  <h1>🌦️ CH04: Weather Composition</h1>
-  <hr />
-
   <div class="dashboard-wrapper">
     <section class="search-box">
       <h3>도시 검색</h3>

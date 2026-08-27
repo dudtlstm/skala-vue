@@ -93,9 +93,6 @@ watchEffect(() => {
 </script>
 
 <template>
-  <h1>🧩 CH05: Weather Component</h1>
-  <hr />
-
   <div class="dashboard-wrapper">
     <BaseDashboardCard>
       <SearchBar :current-query="keyword" @update-query="handleUpdateQuery" />

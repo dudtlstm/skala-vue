@@ -23,9 +23,6 @@ const showDetail = (cityName, status) => {
 </script>
 
 <template>
-  <h1>☀️ CH03: Weather Mockup</h1>
-  <hr />
-
   <div class="dashboard-wrapper">
     <section class="search-box">
       <h3>도시 검색</h3>
