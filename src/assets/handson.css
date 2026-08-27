@@ -1,11 +1,23 @@
+/* 0. UI Libraries Hands on: 하늘색 테마 토큰 */
+:root {
+  --sky-50: #eef8ff;
+  --sky-100: #dcedfb;
+  --sky-200: #cfe6fb;
+  --card-shadow: 0 8px 24px rgba(31, 84, 143, 0.1);
+  --card-shadow-hover: 0 12px 32px rgba(31, 84, 143, 0.18);
+  /* Element Plus 전역 라운드 처리 토큰 — el-card/el-input/el-tag 등 대부분의 컴포넌트가 이 값을 따른다 */
+  --el-border-radius-base: 12px;
+  --el-card-border-radius: 16px;
+}
+
 /* 1. 전체 최외곽 컨테이너 레벨 정의 */
 .app-container {
   max-width: 900px;
-  margin: 40px 10px 40px 10px;
+  margin: 40px auto;
   padding: 30px 40px;
-  background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  background: linear-gradient(165deg, var(--sky-50), var(--sky-100) 50%, var(--sky-200) 100%);
+  border-radius: 24px;
+  box-shadow: 0 10px 30px rgba(31, 84, 143, 0.12);
   font-family:
     'Pretendard',
     -apple-system,
@@ -17,7 +29,7 @@
 }
 /* 2. 대주제 (h1) 및 구분선 (hr) 정돈 */
 .app-container h1 {
-  font-size: 1.5rem;
+  font-size: clamp(1.15rem, 4vw, 1.5rem);
   font-weight: 700;
   color: #2c3e50;
   margin-top: 48px;
@@ -36,6 +48,14 @@
   border-top: 2px solid #e9ecef;
   margin-bottom: 24px;
 }
+@media (max-width: 480px) {
+  .app-container {
+    padding: 16px 18px;
+    margin: 24px auto;
+    border-radius: 18px;
+  }
+}
+
 /* 세션 대제목 (h1) 스타일링 */
 h1 {
   font-size: 1.8rem;
@@ -45,13 +65,22 @@ h1 {
   margin-bottom: 8px;
 }
 
+/* 전체 사이트 공통: 섹션 소제목(h3/h4)은 항상 bold */
+h3,
+h4 {
+  font-weight: 700;
+}
+
 .navigation-bar {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  background-color: #ffffff;
-  padding: 15px;
-  border-radius: 8px;
+  row-gap: 8px;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+  padding: 10px;
+  border-radius: 999px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   margin-bottom: 20px;
 }
@@ -60,73 +89,43 @@ h1 {
   color: #7f8c8d;
   font-weight: bold;
   font-size: 16px;
-  transition: color 0.2s ease;
+  padding: 8px 14px;
+  border-radius: 999px;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 .nav-item:hover {
   color: #2c3e50;
+  background-color: rgba(34, 141, 125, 0.1);
 }
 .divider {
-  margin: 0 15px;
-  color: #dcdde1;
+  display: none;
 }
 
-/* 🔥 Vue Router가 활성화된 링크 태그에 자동으로 부여하는 클래스 스펙 */
 .navigation-bar .router-link-exact-active {
-  color: #3498db;
-  border-bottom: 2px solid #3498db;
-  padding-bottom: 2px;
+  color: #fff;
+  background-color: #228d7d;
+  border-bottom: none;
+  padding-bottom: 8px;
+}
+@media (max-width: 480px) {
+  .nav-item {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+  .unit-toggler {
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+  }
 }
 
-/* 과제페이지 스타일 - Component 분리 후 각 페이지별로 이동 */
+/* 대시보드 하위 View들이 공유하는 래퍼(반응형은 각 View의 scoped 스타일에서 처리) */
 .dashboard-wrapper {
-  width: 600px;
+  width: 100%;
+  max-width: 720px;
   margin: 0 auto;
-}
-.search-box,
-.list-box {
-  background: #f8f9fa;
-  padding: 15px;
-  border-radius: 8px;
-  margin-bottom: 15px;
-  border: 1px solid #e9ecef;
-}
-.search-box h3,
-.list-box h3 {
-  font-weight: 700;
-}
-input {
-  padding: 8px;
-  width: 90%;
-  font-size: 14px;
-}
-.weather-card {
-  background: #fff;
-  border: 1px solid #dee2e6;
-  padding: 12px;
-  margin-bottom: 10px;
-  border-radius: 6px;
-  cursor: pointer;
-  position: relative;
-}
-.badge {
-  display: inline-block;
-  padding: 4px 8px;
-  font-size: 12px;
-  border-radius: 4px;
-  color: #fff;
-}
-.hot {
-  background-color: #ff7675;
-}
-.cool {
-  background-color: #74b9ff;
-}
-.btn-detail {
-  position: absolute;
-  right: 12px;
-  top: 15px;
-  padding: 6px 10px;
-  cursor: pointer;
 }
 .status-bar {
   background: #e8f5e9;
@@ -134,5 +133,80 @@ input {
   text-align: center;
   color: #2e7d32;
   font-weight: bold;
+  border-radius: 14px;
+}
+
+/* Ch08 Axios 요구사항 2번: 추가로 붙인 OpenWeatherMap API를 표시하는 공용 배지 */
+.api-badge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #228d7d;
+  background-color: #d8f3ec;
+  border: 1px solid #a8ddce;
+  border-radius: 999px;
+  vertical-align: middle;
+}
+/* 배지 옆에 붙는 회색 원 느낌표 아이콘 — 이걸 호버하면 title 설명 툴팁이 뜬다 */
+.info-icon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  margin-left: 4px;
+  border-radius: 50%;
+  background-color: #adb5bd;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  font-style: normal;
+  line-height: 1;
+  vertical-align: middle;
+  cursor: pointer;
+}
+/* 말풍선 툴팁 본체: data-tooltip 속성의 텍스트를 아이콘 위에 박스로 띄운다 */
+.info-icon::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 9px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 220px;
+  padding: 8px 10px;
+  background-color: #2d2d2d;
+  color: #f1f1f1;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+  text-align: left;
   border-radius: 6px;
+  white-space: normal;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease;
+  z-index: 20;
+  pointer-events: none;
+}
+/* 말풍선 꼬리(아래쪽 삼각형) */
+.info-icon::before {
+  content: '';
+  position: absolute;
+  bottom: calc(100% + 3px);
+  left: 50%;
+  transform: translateX(-50%);
+  border: 6px solid transparent;
+  border-top-color: #2d2d2d;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease;
+  z-index: 20;
+}
+.info-icon:hover::after,
+.info-icon:hover::before {
+  opacity: 1;
+  visibility: visible;
 }
