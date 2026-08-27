@@ -1,4 +1,5 @@
-<!-- Ch06 Vue Router의 Hands on 코드입니다. Catch-all Route(/:pathMatch(.*)*)용 404 View. -->
+<!-- Ch06 Vue Router의 Hands on 코드입니다. Catch-all Route(/:pathMatch(.*)*)용 404 View.
+     UI Libraries Hands on: Element Plus el-result로 교체. -->
 
 <script setup>
 import { useRouter } from 'vue-router'
@@ -12,12 +13,14 @@ const handleGoHome = () => {
 
 <template>
   <div class="not-found-wrapper">
-    <div class="not-found-box">
-      <div class="not-found-icon">🌫️</div>
-      <h2>페이지를 찾을 수 없습니다</h2>
-      <p>요청하신 주소가 존재하지 않거나<br />아직 준비되지 않은 화면입니다.</p>
-      <button class="home-btn" @click="handleGoHome">날씨 대시보드로 이동</button>
-    </div>
+    <el-result icon="warning" title="페이지를 찾을 수 없습니다" sub-title="요청하신 주소가 존재하지 않거나 아직 준비되지 않은 화면입니다.">
+      <template #icon>
+        <span class="not-found-icon">🌫️</span>
+      </template>
+      <template #extra>
+        <el-button class="home-btn" round @click="handleGoHome">날씨 대시보드로 이동</el-button>
+      </template>
+    </el-result>
   </div>
 </template>
 
@@ -28,34 +31,18 @@ const handleGoHome = () => {
   align-items: center;
   min-height: 60vh;
 }
-.not-found-box {
-  text-align: center;
-  background: #fff;
-  padding: 40px;
-  border-radius: 12px;
-  border: 1px solid #e9ecef;
-}
 .not-found-icon {
   font-size: 3.5rem;
-  margin-bottom: 15px;
+  line-height: 1;
 }
-.not-found-box h2 {
-  font-size: 1.5rem;
-  color: #343a40;
-  margin-bottom: 10px;
-}
-.not-found-box p {
-  color: #6c757d;
-  line-height: 1.6;
-  margin-bottom: 25px;
-}
+/* 상세보기 버튼(WeatherCard.vue의 .btn-detail)과 동일한 teal 그라데이션으로 톤을 맞춘다 */
 .home-btn {
-  padding: 10px 24px;
-  background-color: #228d7d;
-  color: #fff;
   border: none;
-  border-radius: 20px;
-  font-weight: bold;
-  cursor: pointer;
+  background: linear-gradient(135deg, #28a08d, #1c7365);
+  color: #fff;
+  font-weight: 600;
+}
+.home-btn:hover {
+  filter: brightness(1.08);
 }
 </style>
